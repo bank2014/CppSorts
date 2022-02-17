@@ -6,14 +6,14 @@
 #include <vector>
 using namespace std;
 #define parent(x) (x-1)/2
-#define MAX_SIZE 6000000    //µ¥ÀÌÅÍÀÇ °³¼ö ÁöÁ¤
-#define SWAP(x,y,t) ((t)=(x), (x)=(y), (y)=(t))    //SWAPÇÔ¼ö ¼³Á¤
-vector<int> original;    //·£´ıÇÔ¼ö·Î ¸¸µç µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ ¿øº» ¹è¿­
-int list[MAX_SIZE];    //°¢ Á¤·Ä ¾Ë°í¸®Áò¿¡¼­ »ç¿ëÇÒ µ¥ÀÌÅÍ ¹è¿­
-int sorted[MAX_SIZE]; //ÇÕº´Á¤·Ä¿¡¼­ »ç¿ëÇÒ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ ¹è¿­
-clock_t start, finish, used_time = 0;    //½ÇÇà ½Ã°£ ÃøÁ¤À» À§ÇÑ º¯¼ö
+#define MAX_SIZE 6000000    //ë°ì´í„°ì˜ ê°œìˆ˜ ì§€ì •
+#define SWAP(x,y,t) ((t)=(x), (x)=(y), (y)=(t))    //SWAPí•¨ìˆ˜ ì„¤ì •
+vector<int> original;    //ëœë¤í•¨ìˆ˜ë¡œ ë§Œë“  ë°ì´í„°ë¥¼ ì €ì¥í•  ì›ë³¸ ë°°ì—´
+int list[MAX_SIZE];    //ê° ì •ë ¬ ì•Œê³ ë¦¬ì¦˜ì—ì„œ ì‚¬ìš©í•  ë°ì´í„° ë°°ì—´
+int sorted[MAX_SIZE]; //í•©ë³‘ì •ë ¬ì—ì„œ ì‚¬ìš©í•  ë°ì´í„°ë¥¼ ì €ì¥í•  ë°°ì—´
+clock_t start, finish, used_time = 0;    //ì‹¤í–‰ ì‹œê°„ ì¸¡ì •ì„ ìœ„í•œ ë³€ìˆ˜
 
-//ÇÕº´Á¤·Ä
+//í•©ë³‘ì •ë ¬
 void merge(int list[], int left, int mid, int right)
 {
     int i, j, k, l;
@@ -49,7 +49,7 @@ void merge_sort(int list[], int left, int right)
     }
 }
 
-//ÄüÁ¤·Ä
+//í€µì •ë ¬
 int partition(int list[], int left, int right)
 {
     int pivot = list[left], tmp, low = left, high = right + 1;
@@ -78,7 +78,7 @@ void quick_sort(int list[], int left, int right)
     }
 }
 
-//¹öºí Á¤·Ä
+//ë²„ë¸” ì •ë ¬
 void bubble_sort(int list[], int n)
 {
     int i, j, tmp;
@@ -91,7 +91,7 @@ void bubble_sort(int list[], int n)
     }
 }
 
-//¼±ÅÃ Á¤·Ä
+//ì„ íƒ ì •ë ¬
 void selection_sort(int list[], int n)
 {
     int i, j, least, tmp;
@@ -105,7 +105,7 @@ void selection_sort(int list[], int n)
     }
 }
 
-//»ğÀÔ Á¤·Ä
+//ì‚½ì… ì •ë ¬
 void insertion_sort(int list[], int n)
 {
     int i, j, key;
@@ -119,16 +119,16 @@ void insertion_sort(int list[], int n)
     }
 }
 
-void swap(int* val1, int* val2) { // ½º¿Ò ÇÔ¼ö
+void swap(int* val1, int* val2) { // ìŠ¤ì™‘ í•¨ìˆ˜
     int tmp = *val1;
     *val1 = *val2;
     *val2 = tmp;
 }
 
 void heapify(int list[], int n, int parent) {
-    int largest = parent; //ºÎ¸ğ ³ëµå
-    int l = 2 * parent + 1; //¿ŞÂÊ ÀÚ½Ä
-    int r = 2 * parent + 2; //¿À¸¥ÂÊ ÀÚ½Ä
+    int largest = parent; //ë¶€ëª¨ ë…¸ë“œ
+    int l = 2 * parent + 1; //ì™¼ìª½ ìì‹
+    int r = 2 * parent + 2; //ì˜¤ë¥¸ìª½ ìì‹
 
 
     if (l < n && list[l] > list[largest]) {
@@ -178,7 +178,7 @@ void shell_sort(int list[], int n) {
     }
 }
 
-//¿øº» ¹è¿­À» º¹»çÇÏ´Â ÇÔ¼ö
+//ì›ë³¸ ë°°ì—´ì„ ë³µì‚¬í•˜ëŠ” í•¨ìˆ˜
 void CopyArr()
 {
     int i;
@@ -186,11 +186,11 @@ void CopyArr()
         list[i] = original[i];
 }
 
-//½ÇÇà ½Ã°£À» ÃøÁ¤ ¹× Ãâ·ÂÇÏ´Â ÇÔ¼ö
+//ì‹¤í–‰ ì‹œê°„ì„ ì¸¡ì • ë° ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void CalcTime()
 {
     used_time = finish - start;
-    cout << "Á¤·Ä ¿Ï·á ¼Ò¿ä½Ã°£ : " << (float)used_time / CLOCKS_PER_SEC << "sec\n\n";
+    cout << "ì •ë ¬ ì™„ë£Œ ì†Œìš”ì‹œê°„ : " << (float)used_time / CLOCKS_PER_SEC << "sec\n\n";
 }
 
 
