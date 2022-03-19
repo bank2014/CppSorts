@@ -6,12 +6,12 @@
 #include <vector>
 using namespace std;
 #define parent(x) (x-1)/2
-#define MAX_SIZE 6000000    //데이터의 개수 지정
-#define SWAP(x,y,t) ((t)=(x), (x)=(y), (y)=(t))    //SWAP함수 설정
-vector<int> original;    //랜덤함수로 만든 데이터를 저장할 원본 배열
-int list[MAX_SIZE];    //각 정렬 알고리즘에서 사용할 데이터 배열
-int sorted[MAX_SIZE]; //합병정렬에서 사용할 데이터를 저장할 배열
-clock_t start, finish, used_time = 0;    //실행 시간 측정을 위한 변수
+#define MAX_SIZE 6000000                            //데이터의 개수 지정
+#define SWAP(x,y,t) ((t)=(x), (x)=(y), (y)=(t))     //SWAP함수 설정
+vector<int> original;                               //랜덤함수로 만든 데이터를 저장할 원본 배열
+int list[MAX_SIZE];                                 //각 정렬 알고리즘에서 사용할 데이터 배열
+int sorted[MAX_SIZE];                               //합병정렬에서 사용할 데이터를 저장할 배열
+clock_t start, finish, used_time = 0;               //실행 시간 측정을 위한 변수
 
 //합병정렬
 void merge(int list[], int left, int mid, int right)
@@ -126,7 +126,7 @@ void swap(int* val1, int* val2) { // 스왑 함수
 }
 
 void heapify(int list[], int n, int parent) {
-    int largest = parent; //부모 노드
+    int largest = parent;   //부모 노드
     int l = 2 * parent + 1; //왼쪽 자식
     int r = 2 * parent + 2; //오른쪽 자식
 
